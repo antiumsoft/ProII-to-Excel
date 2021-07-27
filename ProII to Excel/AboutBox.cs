@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -10,12 +11,14 @@ namespace ProII_to_Excel
         public AboutBox()
         {
             InitializeComponent();
+            TextReader tr = new StreamReader(@"LICENSE.txt");
+
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = AssemblyDescription;
+            this.textBoxDescription.Text = tr.ReadToEnd();
             this.logoPictureBox.BackColor = ColorTranslator.FromHtml("#45CBB2");
         }
 
